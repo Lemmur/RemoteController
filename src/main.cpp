@@ -26,7 +26,7 @@ void setup() {
   Serial.begin(9600);
   radio.begin();
   radio.setDataRate( RF24_250KBPS );
-  radio.setRetries(15, 15);
+  radio.setRetries(0, 15);
   radio.openWritingPipe(rxAddr);
   radio.stopListening();
   pinMode(SW_pin, INPUT);
@@ -42,7 +42,7 @@ void getPads(int &padX, int &padY) {
 
 void loop() {
   getPads(padX, padY);
-  if (padX != prevPadX || padY != prevPadY) {
+  // if (padX != prevPadX || padY != prevPadY) {
     prevPadY = padY;
     prevPadX = padX;
 
@@ -57,7 +57,6 @@ void loop() {
     Serial.print("Sent Message: ");
     Serial.print( char_array );
     Serial.println("");
-  }
-
+  // }
   delay(100);
 }
